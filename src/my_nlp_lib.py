@@ -17,6 +17,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import plotly.graph_objs as go
 import plotly as plotly
+from mpl_toolkits.mplot3d import Axes3D #required for matplotlib 3d projection
 
 nlp = spacy.load('en')
 
@@ -109,11 +110,11 @@ def build_text_vectorizer(contents, use_tfidf=True, max_features=None):
     vectorizer_model = Vectorizer(max_features=max_features)
     vectorizer_model.fit(contents)
     vocabulary = np.array(vectorizer_model.get_feature_names())
+    #
+    # def vectorizer(X):
+    #     return vectorizer_model.transform(X).toarray()
 
-    def vectorizer(X):
-        return vectorizer_model.transform(X).toarray()
-
-    return vectorizer, vocabulary
+    return vocabulary, vectorizer_model
 
 
 def bag_o_words(corpus):
@@ -248,8 +249,8 @@ def plot_embedding3dplotly(X, y, filename='plot3d.html'):
             textfont=dict(
                 family='sans serif',
                 size=18,
-                color='rgba' + str(plt.cm.Accent(int(y[i])))
-                # color='rgba' + str(plt.cm.Set1(int(y[i]))) #No Idea why 4 and 5 do
+                # color='rgba' + str(plt.cm.Accent(int(y[i])))
+                color='rgba' + str(plt.cm.Set1(int(y[i]))) #No Idea why 4 and 5 do
                 # not color using Set1
             )
         )
