@@ -20,9 +20,9 @@ We scraped from numerous big tech cities including:
 * Portland
 
 
-## processing
+## Processing
 
-As this was a rather light project the methodology is not the complex. First, Leo scraped the data off of indeed. After that I started doing EDA on the data and playing with some NLP. I first tried using just a traditional count vectorizer but found that a term frequency inverse document frequency vectorizer (tf-idf) worked much better. This was unsurprising as many of the job postings were different lengths. Afterwords I realized I had an been amount of pollution in my data in that I didn't particularly want a lot of the words that I was seeing. As a result I added many words to my stop words, lemmatized the words and only kept certain parts of speech using spaCy.  
+As this was a rather light project the methodology is not the complex. Feel free to follow along in the [jupyter notebook](job_descriptions_nlp_notebook.ipynb). First, Leo scraped the data off of indeed. After that I started doing EDA on the data and playing with some NLP. I first tried using just a traditional count vectorizer but found that a term frequency inverse document frequency vectorizer (tf-idf) worked much better. This was unsurprising as many of the job postings were different lengths. Afterwords I realized I had an been amount of pollution in my data in that I didn't particularly want a lot of the words that I was seeing. As a result I added many words to my stop words, lemmatized the words and only kept certain parts of speech using spaCy.  
 
 At this point I began exploring the data. Once I cleaned the data I went back and used the tf-idf vectorizer. The first thing I wanted to do was to see what the most important words in the data set and if I could actually pull out 6 topics or in this case 6 job positions. To do this I used non-negative matrix factorization and assumed 6 classes. The 50 most important words that contributed to each topic are shown below.
 I have labeled them for convience based on what I assumed the topic to be based on the text
