@@ -5,37 +5,28 @@ from sklearn.decomposition import NMF
 import numpy as np
 np.random.seed(12345)
 
-
 app = Flask(__name__)
-
 
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
+
 @app.route('/submit')
 def submit_func():
     return render_template('submit.html')
 
-@app.route('/predict', methods = ["GET", "POST"])
+
+@app.route('/predict', methods=["GET", "POST"])
 def predict_func():
 
     with open('static/model.pkl', 'rb') as f:
-       nlp_packages = pickle.load(f)
-       vectorizer=nlp_packages[0]
-       factorizer=nlp_packages[1]
-       vocabulary=nlp_packages[2]
-
-    #    working_corpus=nlp_packages[0]
-    #    factorizer=nlp_packages[1]
-    #    vocabulary=nlp_packages[2]
-    #
-    # vectorizer, vocabulary = my_lib.build_text_vectorizer(working_corpus,
-    #                          use_tfidf=True,
-    #                          max_features=2000
-    print (type(vectorizer))
-
+        nlp_packages = pickle.load(f)
+        vectorizer = nlp_packages[0]
+        factorizer = nlp_packages[1]
+        vocabulary = nlp_packages[2]
+    print(type(vectorizer))
 
     X = request.form['words']
     clean_text = my_lib.process_string(X)
@@ -57,7 +48,8 @@ def predict_func():
         if word not in my_set:
             missing_words.append(word)
 
-    return render_template('predict.html', prediction = ' '.join(missing_words[0:50]))
+    return render_template('predict.html',
+                           prediction=' '.join(missing_words[0:50]))
 
 
 if __name__ == '__main__':
