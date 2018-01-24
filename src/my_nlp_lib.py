@@ -1,7 +1,6 @@
 # Process_string, build_text_vectorizer modified from NLP rescources
 # from Galvanize.
 # Original Plot_embedding modefied from a script by Adam Richards.
-## Still need to add doc strings to most functions
 
 from sklearn.feature_extraction.stop_words import ENGLISH_STOP_WORDS
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
@@ -11,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import plotly.graph_objs as go
 import plotly as plotly
-from mpl_toolkits.mplot3d import Axes3D # required for matplotlib 3d projection
+from mpl_toolkits.mplot3d import Axes3D  # required for matplotlib 3d proj
 
 nlp = spacy.load('en')
 
@@ -42,13 +41,13 @@ def process_string(doc, stoplist=None):
                     'the_united_states', 'document', 'proud', 'status',
                     'disability', 'opportunity', 'veteran', 'origin',
                     'religion', 'race', 'color', 'national', 'sex', 'identity',
-                    'company', 'regard','qualified', 'receive', 'career',
+                    'company', 'regard', 'qualified', 'receive', 'career',
                     'consideration', 'gender', 'health', 'apply', 'info',
                     'available', 'contract', 'sponsorship', 'type', 'position',
                     'time', 'corp', 'www', 'date', 'performance', 'bonus',
                     'distribute', 'preferably', 'report', 'site', 'place',
                     'big', 'real', 'grow', 'com', 'help', 'world', 'look',
-                    'people', 'great', 'make','product', 'build', 'employee',
+                    'people', 'great', 'make', 'product', 'build', 'employee',
                     'join', 'want', 'impact', 'good', 'pay', 'new', 'offer',
                     'ne', 'office', 'client', 'll', 'solution', 'job',
                     'professional', 'business', 'right', 'value', 'industry',
@@ -77,7 +76,7 @@ def process_string(doc, stoplist=None):
                     'drive', 'day', 'fast', 'able', 'role', 'act', 'year',
                     'hand', 'legally' 'United' 'States'
                     ])
-    if stoplist == None:
+    if stoplist is None:
         STOPLIST = STOPLIST
     else:
         STOPLIST = set(stoplist + list(STOPLIST))
